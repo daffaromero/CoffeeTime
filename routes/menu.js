@@ -1,24 +1,22 @@
 const express = require('express');
-const router = express.Router();
+const {
+    getAllMenu,
+    getMenu,
+    createMenu,
+    updateMenu,
+    deleteMenu
+} = require('../controllers/menuController')
 
-router.get('/', (req, res) => {
-    res.status(200).json({success: true, msg: 'Show current order'});
-});
+const router  = express.Router();
+router
+    .route('/')
+    .get(getAllMenu)
+    .post(createMenu);
 
-router.get('/:id', (req, res) => {
-    res.status(200).json({success: true, msg: `Show order with ID ${req.params.id}`});
-});
-
-router.post('/', (req, res) => {
-    res.status(200).json({success: true, msg: 'Create a new order'});
-});
-
-router.put('/:id', (req, res) => {
-    res.status(200).json({success: true, msg: `Update order with ID ${req.params.id}`});
-});
-
-router.delete('/:id', (req, res) => {
-    res.status(200).json({success: true, msg: `Delete order ${req.params.id}`})    
-});
+router
+    .route('/:id')
+    .get(getMenu)
+    .put(updateMenu)
+    .delete(deleteMenu);
 
 module.exports = router;
