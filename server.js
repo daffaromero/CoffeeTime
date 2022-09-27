@@ -1,14 +1,21 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
-
-//Route files
-const menu = require('./routes/menu');
+const connectDB = require('./config/db')
 
 //Load env vars
 dotenv.config({path: './config/config.env'});
 
+//Connect to database
+connectDB();
+
+//Route files
+const menu = require('./routes/menu');
+
 const app = express();
+
+//Body Parser
+app.use(express.json())
 
 //Custom logging middleware (unused)
 //app.use(logger);
