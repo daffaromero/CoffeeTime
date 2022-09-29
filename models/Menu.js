@@ -3,9 +3,10 @@ const mongoose = require('mongoose')
 const MenuSchema = new mongoose.Schema({
     name:{
         type: String,
-        require: true,
+        require: [true, 'Please add a name'],
         unique: true
     },
+    slug: String,
     description:{
         type: String,
     },
