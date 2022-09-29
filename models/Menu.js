@@ -1,14 +1,16 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const MenuSchema = new mongoose.Schema({
     name:{
         type: String,
-        require: [true, 'Please add a name'],
+        required: [true, 'Please add a name'],
         unique: true
     },
     slug: String,
     description:{
         type: String,
+        maxlength: [500, 'Description cannot be more than 500 characters']
     },
     image:{
         type: String,
@@ -16,13 +18,20 @@ const MenuSchema = new mongoose.Schema({
     },
     price:{
         type: Number,
-        require: true,
+        required: [true, 'Please add a price']
     },
     available:{
         type: Boolean,
-        require: true,
+        required: true,
         default: true
     }
+});
+
+// Create menu slug from the name
+
+MenuSchema.pre('save', function(next) {
+    this.slug = slugify(this.name, {lower: true});
+    next();
 });
 
 module.exports = mongoose.model('Menu', MenuSchema);
