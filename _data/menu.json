@@ -1,0 +1,8 @@
+[
+    {
+        "name": "Sample Menu Item",
+        "description": "This is a placeholder description. Something like lorem ipsum something something goes here.",
+        "price": 22000,
+        "available": true
+    }
+]
