@@ -9,5 +9,5 @@ Anisya Mahira Salienka - 20/463593/TK/51585<br>
 Nur Azzam Wafiuddin - 21/479115/TK/52806<br>
 
 
-### Link Slide Presentasi
-https://www.canva.com/design/DAFNk3SrVg0/8wSk_wyQ9rN7SEV0N9zvYg/edit?utm_content=DAFNk3SrVg0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+### Link Slide Presentasi (Canva)
+https://bit.ly/SlideKel15
