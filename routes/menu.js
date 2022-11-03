@@ -4,7 +4,9 @@ const {
     getMenu,
     createMenu,
     updateMenu,
-    deleteMenu
+    deleteMenu,
+    menuPhotoUpload
+
 } = require('../controllers/menuController')
 
 const router  = express.Router();
@@ -20,3 +22,5 @@ router
     .delete(deleteMenu);
 
 module.exports = router;
+
+router.route('/:id/photo').put(menuPhotoUpload);

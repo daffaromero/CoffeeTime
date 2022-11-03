@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+const errorHandler = (err, req, res, next) => {
+    console.log(err.stack.red)
+
+    res.status(500).json({
+        success: false,
+        error: err.message
+    });
+}
+
+module.exports = errorHandler;
+=======
 const ErrorResponse = require('../utils/errorResponse');
 
 const errorHandler = (err, req, res, next) => {
@@ -34,3 +46,4 @@ const errorHandler = (err, req, res, next) => {
 
 module.exports = errorHandler;
 
+>>>>>>> d1446bf40306f7a34234d6b3db45922dc0f4baff
