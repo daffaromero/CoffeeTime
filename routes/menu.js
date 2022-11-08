@@ -1,5 +1,5 @@
 const express = require('express');
-const { protect } = require('../middleware/auth');
+const { protect, authorize } = require('../middleware/auth');
 
 const {
     getAllMenu,
@@ -15,13 +15,13 @@ const router  = express.Router();
 router
     .route('/')
     .get(getAllMenu)
-    .post(protect, createMenu);
+    .post(protect, authorize('admin'), createMenu);
 
 router
     .route('/:id')
     .get(getMenu)
-    .put(protect, updateMenu)
-    .delete(protect, deleteMenu);
+    .put(protect, authorize('admin'), updateMenu)
+    .delete(protect, authorize('admin'), deleteMenu);
 
 module.exports = router;
 
