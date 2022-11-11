@@ -24,14 +24,14 @@ exports.register = asyncHandler(async(req, res, next) =>{
 // @route   POST /api/v1/auth/login
 // @access  Public
 exports.login = asyncHandler(async(req, res, next) =>{
-    const { email, password} = req.body;
+    const {email, password} = req.body;
 
     //validate email & password
     if(!email || !password){
         return next (new ErrorResponse('Please provide and email and passowrd', 400));
     }
     //check for user
-    const user = await User.findOne({ email }).select('+password');
+    const user = await User.findOne({email}).select('+password');
     if(!user){
         return next (new ErrorResponse('invalid credentials', 401));
     }
