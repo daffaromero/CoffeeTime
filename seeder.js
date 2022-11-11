@@ -22,7 +22,6 @@ const menus = JSON.parse(fs.readFileSync(`${__dirname}/_data/menu.json`,`utf-8`)
 const importDB = async() => {
     try{
         await Menu.create(menus);
-
         console.log('Database succsessfully imported..'.green.inverse);
         process.exit();
     }
@@ -35,7 +34,6 @@ const importDB = async() => {
 const deleteDB = async() => {
     try{
         await Menu.deleteMany();
-
         console.log('Database destroyed..'.red.inverse);
         process.exit();
     }

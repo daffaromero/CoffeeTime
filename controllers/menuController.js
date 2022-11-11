@@ -91,7 +91,9 @@ exports.getMenu = asyncHandler(async (req, res, next) => {
 // @route   POST /api/v1/menu
 // @access  Private
 exports.createMenu = asyncHandler(async (req, res, next) => {
-        const menu = await Menu.create(req.body);
+    //Add user to req.body
+    req.body.user = req.user.id;
+    const menu = await Menu.create(req.body);
         res
             .status(201)
             .json({

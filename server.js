@@ -3,6 +3,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const fileupload = require('express-fileupload');
+const cookieParser = require('cookie-parser');
 const errorHandler = require('./middleware/error')
 const connectDB = require('./config/db')
 
@@ -14,11 +15,15 @@ connectDB();
 
 //Route files
 const menu = require('./routes/menu');
+const auth = require('./routes/auth');
 
 const app = express();
 
 //Body Parser
-app.use(express.json())
+app.use(express.json());
+
+//cookie parser
+app.use(cookieParser());
 
 //Custom logging middleware (unused)
 //app.use(logger);
@@ -36,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Mount routers
 app.use('/api/v1/menu', menu);
+app.use('/api/v1/auth', auth);
 
 app.use(errorHandler);
 
