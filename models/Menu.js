@@ -24,6 +24,11 @@ const MenuSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: true
+    },
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+        required: false
     }
 });
 
