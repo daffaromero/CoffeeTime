@@ -106,10 +106,7 @@ exports.createMenu = asyncHandler(async (req, res, next) => {
 // @route   PUT /api/v1/menu/:id
 // @access  Private
 exports.updateMenu = asyncHandler(async (req, res, next) => {
-        const menu = await Menu.findByIdAndUpdate(req.params.id, req.body, {
-            new: true,
-            runValidators: true
-        });
+        const menu = await Menu.findByIdAndUpdate(req.params.id);
         if(!menu){
             return next(new ErrorResponse(`Resource not found with ID of ${req.params.id}`, 404));
         }
@@ -117,6 +114,16 @@ exports.updateMenu = asyncHandler(async (req, res, next) => {
         .status(200)
         .json({success: true, data: menu});
 });
+
+//make sure user is admin karena hanya admin yang bisa update menu
+if(menu.user.toString() !== req.user.id && req.user.role !== 'admin'){
+    return next(new ErrorResponse(`User ${req.params.id} is not authorized to update this menu`, 401));
+}
+
+menu = await menu.findByIdAndUpdate(req.params.id, req.body,{
+    new: true,
+    runValidators: true
+})
 
 // @desc    Delete menu item
 // @route   DELETE /api/v1/menu/:id
@@ -126,6 +133,11 @@ exports.deleteMenu = asyncHandler(async (req, res, next) => {
         if(!menu){
             return next(new ErrorResponse(`Resource not found with ID of ${req.params.id}`, 404));
         }
+//make sure user is admin karena hanya admin yang bisa delete menu
+if(menu.user.toString() !== req.user.id && req.user.role !== 'admin'){
+    return next(new ErrorResponse(`User ${req.params.id} is not authorized to delete this menu`, 401));
+}
+        menu.remove();
         res
         .status(200)
         .json({success: true, data: {}});
@@ -139,7 +151,11 @@ exports.menuPhotoUpload = asyncHandler(async (req, res, next) => {
     if(!menu){
         return next(new ErrorResponse(`Resource not found with ID of ${req.params.id}`, 404));
     }
-
+    //make sure user is admin karena hanya admin yang bisa update menu
+    if(menu.user.toString() !== req.user.id && req.user.role !== 'admin'){
+        return next(new ErrorResponse(`User ${req.params.id} is not authorized to update this menu`, 401));
+    }
+    
     if(!req.files){
         return next(
             new ErrorResponse(`Please upload a file`, 400)
