@@ -45,7 +45,7 @@ app.use('/api/v1/auth', auth);
 
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5500;
 
 const server = app.listen(
     PORT, 
