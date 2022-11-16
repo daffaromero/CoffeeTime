@@ -16,6 +16,10 @@ const users = require("./data/users");
 const connectDB = require("./config/db");
 connectDB();
 
+const user = JSON.parse(
+    fs.readFileSync(`${__dirname}/_data/users.json`, 'utf-8')
+);
+
 //Import into DB
 const importDB = async () => {
   try {
@@ -48,6 +52,7 @@ const deleteDB = async () => {
   } catch (err) {
     console.error(err);
   }
+
 };
 
 //Apabila mengetik node seeder -i untuk mengimport data dan node seeder -d untuk menghapus semua data
