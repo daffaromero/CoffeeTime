@@ -1,32 +1,31 @@
 const express = require('express');
-const { protect, authorize } = require('../middleware/auth');
-
 const {
-    getUsers,
-    getUser,
-    createUser,
-    updateUser,
-    deleteUser
+  getUsers,
+  getUser,
+  createUser,
+  updateUser,
+  deleteUser
 } = require('../controllers/users');
+
 const User = require('../models/User');
 
-const router  = express.Router();
+const router = express.Router({ mergeParams: true });
+
+const advancedResults = require('../middleware/advancedResults');
+const { protect, authorize } = require('../middleware/auth');
 
 router.use(protect);
 router.use(authorize('admin'));
 
 router
-    .route('/')
-    .get(advancedResults(User),getUsers)
-    .post(createUser);
-
+  .route('/')
+  .get(advancedResults(User), getUsers)
+  .post(createUser);
 
 router
-    .route('/:id')
-    .get(getUser)
-    .put(updateUser)
-    .delete(deleteUser);
- 
-module.exports = router;
+  .route('/:id')
+  .get(getUser)
+  .put(updateUser)
+  .delete(deleteUser);
 
-router.route('/:id/photo').put(menuPhotoUpload);
+module.exports = router;
