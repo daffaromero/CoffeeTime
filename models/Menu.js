@@ -21,9 +21,9 @@ const MenuSchema = new mongoose.Schema({
     required: [true, "Please add a price"],
   },
   available: {
-    type: Boolean,
+    type: Number,
     required: true,
-    default: true,
+    default: 0,
   },
   user: {
     type: mongoose.Schema.ObjectId,
