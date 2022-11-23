@@ -1,15 +1,4 @@
 {
-   "headers": [
-      {
-        "source": "/(.*)",
-        "headers": [
-          {
-            "key": "access-control-allow-origin",
-            "value": "*"
-          }
-        ]
-      }
-    ],
     "version": 2,
     "name": "coffeetime-backend",
     "builds": [
