@@ -14,9 +14,9 @@ dotenv.config({ path: "./config/config.env" });
 connectDB();
 
 //Route files
-const menu = require('./routes/menu');
-const auth = require('./routes/auth');
-const users = require('./routes/users');
+const menu = require("./routes/menu");
+const auth = require("./routes/auth");
+const users = require("./routes/users");
 
 const app = express();
 
@@ -41,9 +41,9 @@ app.use(fileupload());
 app.use(express.static(path.join(__dirname, "public")));
 
 //Mount routers
-app.use('/api/v1/menu', menu);
-app.use('/api/v1/auth', auth);
-app.use('/api/v1/users', users);
+app.use("/api/v1/menu", menu);
+app.use("/api/v1/auth", auth);
+app.use("/api/v1/auth/users", users);
 
 app.use(errorHandler);
 
