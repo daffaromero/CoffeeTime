@@ -44,6 +44,21 @@ exports.login = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse("invalid credentials", 401));
   }
 
+  // @desc      Log user out / clear cookie
+  // @route     GET /api/v1/auth/logout
+  // @access    Public
+  exports.logout = asyncHandler(async (req, res, next) => {
+    res.cookie("token", "none", {
+      expires: new Date(Date.now() + 10 * 1000),
+      httpOnly: true,
+    });
+
+    res.status(200).json({
+      success: true,
+      data: {},
+    });
+  });
+
   //create token
   sendTokenResponse(user, 200, res);
 });
@@ -68,7 +83,7 @@ exports.updateDetails = asyncHandler(async (req, res, next) => {
     email: req.body.email,
   };
 
-  const user = await User.findById(req.user.id, fieldsToUpdate, {
+  const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
     new: true,
     runValidators: true,
   });
@@ -168,14 +183,3 @@ const sendTokenResponse = (user, statusCode, res) => {
     token,
   });
 };
-
-// @desc    get current logged in user
-// @route   POST /api/v1/auth/me
-// @access  Private
-exports.getMe = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.user.id);
-  res.status(200).json({
-    success: true,
-    data: user,
-  });
-});
