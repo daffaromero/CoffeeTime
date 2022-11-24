@@ -86,7 +86,10 @@ exports.updateDetails = asyncHandler(async (req, res, next) => {
     new: true,
     runValidators: true,
   });
-  sendTokenResponse(user, 200, res);
+  res.status(200).json({
+    success: true,
+    data: user,
+  });
 });
 
 // @desc    update password
