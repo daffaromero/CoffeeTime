@@ -2,6 +2,7 @@ const express = require("express");
 const {
   register,
   login,
+  logout,
   getMe,
   forgotPassword,
   resetPassword,
