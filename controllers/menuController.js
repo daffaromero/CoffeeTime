@@ -35,8 +35,8 @@ exports.getAllMenu = asyncHandler(async (req, res, next) => {
   );
 
   //Finding menu
-  query = await Menu.find(JSON.stringify({ ...keyword }));
-  //   query = Menu.find(JSON.parse(queryStr) || { ...keyword });
+  //   query = await Menu.find(JSON.stringify({ ...keyword }));
+  query = Menu.find(JSON.parse(queryStr));
 
   //Select Fields
   if (req.query.select) {
