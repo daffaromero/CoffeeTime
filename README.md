@@ -8,6 +8,9 @@ Nur Wulan Febriani - 20/460557/TK/51146<br>
 Anisya Mahira Salienka - 20/463593/TK/51585<br>
 Nur Azzam Wafiuddin - 21/479115/TK/52806<br>
 
+<h2>Hosted!</h2>
+Backend aplikasi telah di-hosting di <a href="https://coffeetime-backend.vercel.app/">Vercel</a><br>
+Database menu: <a href="https://coffeetime-backend.vercel.app/api/v1/menu">Menu</a>
 
-### Link Slide Presentasi (Canva)
-https://bit.ly/SlideKel15
+<h2>Link Slide Presentasi (Canva)</h2>
+<a href="https://bit.ly/SlideKel15">Presentasi (bit.ly)</a>
