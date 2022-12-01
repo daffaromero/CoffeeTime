@@ -6,6 +6,7 @@ const fileupload = require("express-fileupload");
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
+const cors = require("cors");
 
 //Load env vars
 dotenv.config({ path: "./config/config.env" });
@@ -17,9 +18,12 @@ connectDB();
 const menu = require("./routes/menu");
 const auth = require("./routes/auth");
 const users = require("./routes/users");
-const order = require("./routes/order")
+const order = require("./routes/order");
 
 const app = express();
+
+//Enable CORS requests
+app.use(cors());
 
 //Body Parser
 app.use(express.json());
@@ -45,9 +49,11 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/api/v1/menu", menu);
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/users", users);
-app.use("/api/v1/orders", order)
+app.use("/api/v1/orders", order);
 
-app.get('/api/v1/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID))
+app.get("/api/v1/config/paypal", (req, res) =>
+  res.send(process.env.PAYPAL_CLIENT_ID)
+);
 
 app.use(errorHandler);
 
