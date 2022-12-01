@@ -22,9 +22,12 @@ const order = require("./routes/order");
 
 const app = express();
 
-//Enable CORS requests
-app.use(cors());
+var corsOptions = {
+  origin: "*",
+};
 
+//Enable CORS requests
+app.use(cors(corsOptions));
 //Body Parser
 app.use(express.json());
 
