@@ -1,5 +1,6 @@
 const express = require("express");
 const { protect, authorize } = require("../middleware/auth");
+const cors = require("cors");
 
 const {
   addOrderItems,
@@ -14,13 +15,13 @@ const router = express.Router();
 
 router
   .route("/")
-  .post(protect, addOrderItems)
-  .get(protect, authorize("admin"), getOrders);
-router.route("/myorders").get(protect, getMyOrders);
-router.route("/:id").get(protect, getOrderById);
-router.route("/:id/pay").put(protect, updateOrderToPaid);
+  .post(cors(), protect, addOrderItems)
+  .get(cors(), protect, authorize("admin"), getOrders);
+router.route("/myorders").get(cors(), protect, getMyOrders);
+router.route("/:id").get(cors(), protect, getOrderById);
+router.route("/:id/pay").put(cors(), protect, updateOrderToPaid);
 router
   .route("/:id/deliver")
-  .put(protect, authorize("admin"), updateOrderToDelivered);
+  .put(cors(), protect, authorize("admin"), updateOrderToDelivered);
 
 module.exports = router;
