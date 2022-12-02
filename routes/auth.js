@@ -9,19 +9,18 @@ const {
   updateDetails,
   updatePassword,
 } = require("../controllers/auth");
-const cors = require("cors");
 
 const router = express.Router();
 
 const { protect } = require("../middleware/auth");
 
-router.post(cors(), "/register", register);
-router.post(cors(), "/login", login);
-router.get(cors(), "/logout", logout);
-router.get(cors(), "/me", protect, getMe);
-router.put(cors(), "/updatedetails", protect, updateDetails);
-router.put(cors(), "/updatepassword", protect, updatePassword);
-router.post(cors(), "/forgotpassword", forgotPassword);
-router.put(cors(), "/resetpassword/:resettoken", resetPassword);
+router.post("/register", register);
+router.post("/login", login);
+router.get("/logout", logout);
+router.get("/me", protect, getMe);
+router.put("/updatedetails", protect, updateDetails);
+router.put("/updatepassword", protect, updatePassword);
+router.post("/forgotpassword", forgotPassword);
+router.put("/resetpassword/:resettoken", resetPassword);
 
 module.exports = router;
