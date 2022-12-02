@@ -11,6 +11,10 @@ const {
 } = require("../controllers/menuController");
 
 const router = express.Router();
+
+const cors = require("cors");
+router.use(cors());
+
 router.route("/").get(getAllMenu).post(protect, authorize("admin"), createMenu);
 
 router

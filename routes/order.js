@@ -12,6 +12,9 @@ const {
 
 const router = express.Router();
 
+const cors = require("cors");
+router.use(cors());
+
 router
   .route("/")
   .post(protect, addOrderItems)

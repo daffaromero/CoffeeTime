@@ -12,6 +12,9 @@ const {
 
 const router = express.Router();
 
+const cors = require("cors");
+router.use(cors());
+
 const { protect } = require("../middleware/auth");
 
 router.post("/register", register);
