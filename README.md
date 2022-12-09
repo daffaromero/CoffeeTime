@@ -17,6 +17,11 @@ Database menu: <a href="https://coffeetime-backend.vercel.app/api/v1/menu">Menu<
 
 ## How to run locally
 
+Lakukan install semua dependency back-end:
+```
+npm install
+```
+
 Untuk menjalankan development build:
 
 ```
