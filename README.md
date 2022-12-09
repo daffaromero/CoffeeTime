@@ -15,7 +15,7 @@ Nur Azzam Wafiuddin - 21/479115/TK/52806<br>
 Back-end aplikasi telah di-hosting di <a href="https://coffeetime-backend.vercel.app/">Vercel</a><br>
 Database menu: <a href="https://coffeetime-backend.vercel.app/api/v1/menu">Menu</a>
 
-## How to run
+## How to run locally
 
 Untuk menjalankan development build:
 
